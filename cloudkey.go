@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-
+	"syscall"
 	_ "github.com/jnovack/go-version"
 
 	"github.com/tabalt/pidfile"
@@ -46,7 +46,7 @@ func init() {
 	// setup signal catching
 	sigs := make(chan os.Signal, 1)
 	// catch all signals since not explicitly listing
-	signal.Notify(sigs)
+	signal.Notify(sigs, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM)
 	// method invoked upon seeing signal
 	go func() {
 		s := <-sigs
