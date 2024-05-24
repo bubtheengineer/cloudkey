@@ -15,6 +15,16 @@ Generation 2 device.
 2. `mv /usr/bin/ck-ui /usr/bin/ck-ui.original`
 3. `curl -Lo /usr/local/ck-ui LINK_FROM_RELEASES_PAGE`
 
+### Compile in Docker
+
+1. `docker run --rm -it golang`
+2. `git clone https://github.com/jnovack/cloudkey.git`
+3. `go env -w GO111MODULE=auto`
+4. `cd cloudkey`
+5. `go mod init github.com/jnovack/cloudkey`
+6. `go mod tidy`
+7. `GOOS=linux GOARCH=arm go build cloudkey.go`
+
 ### Developers
 
 1. Have a working Go environment.
